@@ -16,3 +16,5 @@ Proyecto 1
   * contenido/ ahí va la estructura del latex
   
   * main.tex es el archivo latex a compilar, ahí se unen todos los archivos nesesariós para la entrega.
+
+![Avance](./img/2p-mod.png)
