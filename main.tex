@@ -1,0 +1,87 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{subfiles}
+\usepackage{fancyhdr}
+\usepackage{float}
+
+\pagestyle{fancy}
+\fancyhead[L]{\thepage}
+\fancyfoot[C]{\includegraphics[width=0.1\textwidth]{inge_logo}}
+
+
+\graphicspath{{img/}}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.5\textwidth]{unam_logo}\vfill{}
+  {\scshape\Huge Facultad de Ingeniera\par}\vspace{0.5cm}
+  {\scshape\Large Redes de Datos Seguras\par}\vfill
+  {\huge \textbf{Proyecto 1}\\Planeación, optimización y
+    rediseño de una red cableada}\vfill
+  
+  {\Large
+    Alumnos\begin{itemize}
+    \item Garrido Czacki Mario Horacio
+    \item Romero Andrade Cristian
+    \item Romero Andrade Vicente
+
+    \end{itemize}
+  }\vfill
+  {\large Profesor: Ing.~Edgar Martinez Meza}\vfill
+  \includegraphics[width=0.1\textwidth]{inge_logo}
+  
+  
+\end{titlepage}
+
+\tableofcontents{}\newpage
+
+\section{Descripción}\label{sec:desc}
+
+Elaborar la planeación, optimización y rediseño de la red Cableada interna del
+Instituto de Geografía de la UNAM.\ El diseño de la red abarcará aspectos físicos
+y lógicos (cableado estructurado y direccionamiento lógico), así como la
+aplicación de los conceptos estudiados en los tema 3 y 5 de la materia de Redes
+de Datos Seguras.
+
+\subsection{Escenario}\label{sec:esc}
+
+La red que se implementará abarca el edificio Principal del Instituto del Instituto
+de Geografía. Es necesario tener las siguientes consideraciones:
+\begin{itemize}
+\item El enlace de acometida principal deberá ser con tecnología de fibra
+  óptica y se tomará desde el anillo de red UNAM, nota éste ya existe.
+  
+\item  En el edificio Principal existen dos Terrazas en la que no se puede realizar
+el cableado, sin embargo se necesita conectividad.
+
+\item También existen áreas donde no se puede realizar cableado pero se
+  necesita conectividad. (Checar en los planos)
+  
+\item  Los cuartos de telecomunicaciones el MDF y los IDF’s sólo pueden
+instalarse en áreas permitidas, éstos deben estar conectados a través de
+fibra óptica, entre cada uno de los IDF’s y el MDF.\@
+
+\item Los cubículos son ocupados por un investigador y sus becarios y las áreas
+más grandes llamadas peceras albergan varios becarios. Considere el
+número de nodos adecuado para cada área y las direcciones IP que se
+van a requerir.
+
+\item  En caso de que haya más de un área de trabajo por piso deberá aplicar
+direccionamiento lógico VLSM y poner las IP ́s correspondientes a cada
+área.
+\end{itemize}
+
+
+\section{Análisis}\label{sec:ana}
+
+\subfile{contenido/analisis}
+
+
+
+
+\end{document}
