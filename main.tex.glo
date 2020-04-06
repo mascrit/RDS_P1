@@ -1,0 +1,91 @@
+\newglossaryentry{router}
+{
+    name=router,
+    description={Dispositivo  físico  o
+      lógico  que  permite  encaminar  la
+      conexión  entre  redes TCP/IP, es el
+      encargado de que los
+      paquetes de información lleguen a su
+      destino.}
+}
+
+\newglossaryentry{switch}
+{
+    name=switch,
+    description={Dispositivo capaz de
+      enlazar físicamente varios ordenadores
+      de forma activa, enviando los datos
+      exclusivamente al ordenador al que
+      van destinados.}
+}
+
+\newglossaryentry{accp}
+{
+    name=access point,
+    description={Se trata de un dispositivo
+      utilizado en redes inalámbricas de área
+      local (WLAN -Wireless Local Area Network),
+      una red local inalámbrica es aquella que
+      cuenta con  una  interconexión  de
+      computadoras  relativamente  cercanas,
+      sin  necesidad  de cables,  estas  redes
+      funcionan  a  base  de  ondas  de  radio
+      específicas.  El  Access  Point entonces
+      se  encarga  de  ser  una  puerta  de
+      entrada  a  la  red  inalámbrica  en  un
+      lugar específico  y  para  una  cobertura
+      de  radio  determinada,  para  cualquier
+      dispositivo  que solicite acceder, siempre
+      y cuando esté configurado y tenga los
+      permisos necesarios.}
+}
+
+\newglossaryentry{cabesct}{
+  name=cableado estructurado,
+  description={El  concepto  de
+  cableado  estructurado  es  tender  cables
+  deseñal en un edificio de manera tal que
+  cualquier servicio de voz, datos, vídeo,
+  audio,tráfico  de  Internet,  seguridad,
+  control  y  monitoreo estédisponible  desde
+  y  haciacualquier roseta de conexión del
+  edificio. Esto es posible distribuyendo
+  cadaservicio a través  del  edificio  por
+  medio  de  un  cableado  estructurado
+  estándar  concables  de cobre o fibra
+  óptica. Esta infraestructura es diseñada,
+  o estructurada paramaximizar la velocidad,
+  eficiencia  y  seguridad  de  la  red.
+  Ninguna  inversión  en tecnología  dura
+  más que  el  sistema  de  cableado,  que
+  es  la  base  sobre  la cual las  demás
+  tecnologías operarán.}
+}
+
+\newglossaryentry{rack}{
+  name=rack,
+  description={Los racks (que también se conocen como
+  cabinas o bastidores) se hallan en los centros de
+  datos que disponen de muchos servidores. El correcto
+  armado de la estructura es esencial para el
+  funcionamiento de los equipos, ya que los cables deben
+  organizarse de manera adecuada para lograr las conexiones.}
+}
+
+\newglossaryentry{PC}{
+  name=patch cord,
+  description={Los racks (que también se conocen como
+  cabinas o bastidores) se hallan en los centros de
+  datos que disponen de muchos servidores. El correcto
+  armado de la estructura es esencial para el
+  funcionamiento de los equipos, ya que los cables deben
+  organizarse de manera adecuada para lograr las conexiones.}
+}
+
+\newglossaryentry{roseta}{
+  name=roseta,
+  description={Es la entrada hembra de un JACK RJ45,
+    tiene la función de interconectar dispositivos
+    electrónicos de red (servidores, switch,
+    router, equipos de cómputo, etc.).}
+}
