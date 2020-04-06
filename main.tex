@@ -1,25 +1,33 @@
 \documentclass[letterpaper]{article}
 
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-tabla]{babel}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{subfiles}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage[left=3cm,right=3cm,top=3cm,bottom=4cm]{geometry}
+\usepackage[acronym, toc, style=indexgroup]{glossaries}
+\usepackage{hyperref}
+\usepackage{multicol}
+
 
 \pagestyle{fancy}
 \fancyhead[L]{\thepage}
 \fancyfoot[C]{\includegraphics[width=0.1\textwidth]{inge_logo}}
 
 
+
 \graphicspath{{img/}}
+
+\makeglossary{}
+\input{./main.tex.glo}
 
 \begin{document}
 
 \begin{titlepage}
   \centering
-  \includegraphics[width=0.5\textwidth]{unam_logo}\vfill{}
+  \includegraphics[width=0.3\textwidth]{unam_logo}\vfill{}
   {\scshape\Huge Facultad de Ingeniera\par}\vspace{0.5cm}
   {\scshape\Large Redes de Datos Seguras\par}\vfill
   {\huge \textbf{Proyecto 1}\\Planeación, optimización y
@@ -41,15 +49,33 @@
 
 \tableofcontents{}\newpage
 
-\section{Descripción}\label{sec:desc}
+\section{Resumen}\label{sec:resumen}
 
-Elaborar la planeación, optimización y rediseño de la red Cableada interna del
+El \gls{cabesct}  ha  surgido  y  mejorado  con
+el  pasar  del  tiempo  como  una opción de establecer
+redes de área local LAN más estables, seguras y veloces
+que han de solventar gran cantidad  de inconvenientes de
+conexión,  intrusiones y tráfico lento,entre otros problemas
+que deben enfrentar los diseñadores de red.
+
+En este proyecto se plantea el cableado de la segunda planta
+del Instituto de geografía, tratando de una excelente cotización
+con excelente calidad-precio para el cableado, la instalación de
+los equipos con sus configuraciones correspondientes.
+tomando en cuenta el tiempo de vida
+de la futura red. 
+
+\section{Objetivos}\label{sec:obj}
+
+\subsection{Objetivo General}\label{sec:objgen}
+
+Elaborar la Planeación, optimización y rediseño de la red Cableada interna del
 Instituto de Geografía de la UNAM.\ El diseño de la red abarcará aspectos físicos
-y lógicos (cableado estructurado y direccionamiento lógico), así como la
+y lógicos (\gls{cabesct} y direccionamiento lógico), así como la
 aplicación de los conceptos estudiados en los tema 3 y 5 de la materia de Redes
 de Datos Seguras.
 
-\subsection{Escenario}\label{sec:esc}
+\section{Escenario}\label{sec:esc}
 
 La red que se implementará abarca el edificio Principal del Instituto del Instituto
 de Geografía. Es necesario tener las siguientes consideraciones:
@@ -61,11 +87,11 @@ de Geografía. Es necesario tener las siguientes consideraciones:
 el cableado, sin embargo se necesita conectividad.
 
 \item También existen áreas donde no se puede realizar cableado pero se
-  necesita conectividad. (Checar en los planos)
+  necesita conectividad. (Revisar en los planos)
   
 \item  Los cuartos de telecomunicaciones el MDF y los IDF’s sólo pueden
 instalarse en áreas permitidas, éstos deben estar conectados a través de
-fibra óptica, entre cada uno de los IDF’s y el MDF.\@
+fibra óptica, entre cada uno de los IDFs y el MDF.\@
 
 \item Los cubículos son ocupados por un investigador y sus becarios y las áreas
 más grandes llamadas peceras albergan varios becarios. Considere el
@@ -73,16 +99,29 @@ número de nodos adecuado para cada área y las direcciones IP que se
 van a requerir.
 
 \item  En caso de que haya más de un área de trabajo por piso deberá aplicar
-direccionamiento lógico VLSM y poner las IP ́s correspondientes a cada
+direccionamiento lógico VLSM y poner las IPs correspondientes a cada
 área.
 \end{itemize}
 
+\newpage{}
 
-\section{Análisis}\label{sec:ana}
+\section{Desarrollo}\label{sec:ana}
 
 \subfile{contenido/analisis}
 
+\subsection{Estimación de costos}\label{sec:sc}
 
+\subfile{contenido/cotizacion}
+
+\newpage{}
+
+\printglossary{}
+
+\newpage{}
+
+\listoftables{}
+%\addcontentsline{toc}{chapter}{\listtablename}
+\listoffigures{}
 
 
 \end{document}
