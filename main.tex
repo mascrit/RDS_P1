@@ -12,6 +12,7 @@
 \usepackage[acronym, toc, style=indexgroup]{glossaries}
 \usepackage{hyperref}
 \usepackage{multicol}
+\usepackage{pdfpages}
 
 
 \pagestyle{fancy}
@@ -95,7 +96,7 @@ el cableado, sin embargo se necesita conectividad.
   
 \item  Los cuartos de telecomunicaciones el MDF y los IDF’s sólo pueden
 instalarse en áreas permitidas, éstos deben estar conectados a través de
-fibra óptica, entre cada uno de los IDFs y el MDF.\@
+fibra óptica, entre cada uno de los  \acrshort{idf}'s y el \acrshort{mdf}.\@
 
 \item Los cubículos son ocupados por un investigador y sus becarios y las áreas
 más grandes llamadas peceras albergan varios becarios. Considere el
@@ -121,7 +122,17 @@ direccionamiento lógico VLSM y poner las IPs correspondientes a cada
 
 \subfile{contenido/subredes}
 
+A continuación se muestra una imagen a escala del piso con
+su repectivo cableado, donde la fibra optica (color rojo)
+entra por el backbone y donde los  \acrshort{idf}'s se
+conectan en estrella con el \acrshort{mdf}.
+
+
+\includepdf{img/2p-mod.pdf}
+
 \newpage{}
+
+\printglossary[type=\acronymtype]
 
 \printglossary{}
 
