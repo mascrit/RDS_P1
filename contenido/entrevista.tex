@@ -1,0 +1,67 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+% \section*{Entrevista a José Palacios --- Administrador de red en Padilla y Asociados}
+
+Como requerimiento se nos pide hacer una entrevista a un experto sobre
+el área de redes para profundizar más en nuestra solución de la reestructura
+de la red des segundo piso de la IGG.\@ En está entrevista tenemos a
+José Palacios, Administrador de red en Padilla y Asociados:
+
+
+\subsubsection*{¿Cuáles son los estándares que utilizas en el día a día en tu trabajo?}
+
+Pues es una pregunta muy amplia, realmente un poco de todo. Como en la empresa a mi no me toca hacer la instalación ya que contratan gente externa para eso, pues me toca más la parte del troubleshooting y software. Lo que si te toca de a ley es hacer un patch cord entonces el T568A y T568B si podría decir que los uso. Aún así a mi me toca ver la parte más lógica de la administración por lo que me tocan muchos estándares de encriptación como AES, OpenPGP, RSA, etc\ldots
+
+\medskip
+
+Por otro lado también veo bastante la parte inalámbrica por lo que pues WPA2 para las redes inalámbricas, Bluetooth para cuando a alguien no le funcionan los headsets por interferencia y otros de ese estilo. Por la parte administrativa pues SSH, SFTP, NAT, DHCP, etc\ldots
+
+
+\subsubsection*{¿Cuáles son las políticas de uso de la red que administras?}
+Realmente somos muy laxos para los tipos de contenido que nuestros empleados pueden ver en sus computadoras. Incluso si están en el Face mientras saquen el trabajo no hay mucho problema. Lo que si es que hemos tenido algunos incidentes y son los que nos llevó a poner reglas. Te puedo decir las principales:
+\begin{itemize}
+    \item Bloqueo de sitios pornográficos --- Obviamente vienes al trabajo a trabajar, entonces no hay razón para andarlos viendo.
+    \item Bloqueo de protocolos P2P --- Esto viene de que teníamos unos empleados que hacían uso excesivo de la red a altas horas de la noche. Cuando fuimos a investigar sus computadoras estaban encendidas descargando películas\ldots Yo no se por que lo tenían que hacer en el trabajo cuando se supone que no tienen tiempo para verlas pero ahí estaban, y cuando se enteraron los jefes de que estaban usando la red para piratería hasta los corrieron, pero por parte de la administración de red desde ahí los bloqueamos.
+    \item Uso responsable de datos --- Esto está mal dicho, es más bien privacidad de datos de la empresa. Básicamente es estar vigilando la cantidad de datos de subida externos a la red interna. Si alguien necesita subir documentos a la nube los metemos a un servidor dentro de la red que sirve como ventana para cuando los quieran ver desde fuera, pero es más difícil de sacar información así.
+    \item No permisos de instalación en las máquinas de la empresa --- No es tanto por desconfianza en los empleados, es más bien que luego los pueden engañar y te pueden meter un backdoor o algo del estilo. En mayor o menor medida les instalamos lo que nos pidan si lo necesitan para el trabajo, pero si nos andan pidiendo que un cliente de tienda de videojuegos pues ya no, claro.
+    \item No reenviar correos externos en el servicio interno de correo electrónico --- En sí tenemos todo un sistema muy cerrado de mensajería interna y todo mensaje que provenga de fuera de una lista de contactos se trata como sospechoso, pero no falta el que reenvía un correo cadena o alguna otra cosa. A parte de que reenviar algún correo de un cliente está mal por violar su privacidad, pueden haber vectores de ataque por correo electrónico que lleguen a las máquinas internas de la empresa y no queremos eso.
+    \item No responder a todos --- Tuvimos que deshabilitar esta función en los servidores de correo de la empresa, y aunque se quejen algunos no era padre tener que ver que a todo mundo le llegara un --- Recibido, gracias. Porque un directivo manda un correo a toda la empresa y no falta la persona que quiere responder\ldots Se hacía mucho SPAM y por eso ya no puedes hacerlo.
+    \item No guardar archivos personales en la nube de la empresa --- No somos millonarios aunque nos gustaría, por lo que no podemos guardar las fotos de las vacaciones con la familia en 2013. No nos metemos mucho, pero si hay auditorías periódicas nada más viendo los nombres de los archivos que suben para saber si alguien está abusando. Ya si quieren les regalo un USB, tengo muchos pero las reglas son reglas.
+\end{itemize}
+
+\subsubsection*{¿Qué podrías remarcar para la parte de administración de redes?}
+Si te gusta hay de dos, o te encuentras con cosas padres o con dolores de cabeza. Por mi parte apenas andamos haciendo el deployment de la nube interna y me he dado una divertida haciendo que funcione bien, y cuando ves que tu trabajo se va volviendo la columna vertebral de la empresa pues es muy padre.
+
+\medskip
+
+Por la parte no tan padre es el soporte técnico. No puedo esperar a que las tablets sean lo suficientemente buenas como para deshacernos de las impresoras, se traban, se derrama la tinta, se queda atorado el buffer de documentos o a veces simplemente no quieren conectarse a la red. Luego no falta el desesperado que quiere imprimir si o si y manda el mismo documento muchas veces y luego ves una biblia de diapositivas de PowerPoint repetidas. Por suerte ya no se estila usar el Fax, porque esos también tenían muchos problemas. Incluso nos llegaban a mandar hojas enteras en negro para acabarse la tinta y que dejaran de imprimir, y en esos tiempos era más complicado.
+
+\subsubsection*{¿Me podrías resumir un poco el funcionamiento de tu red?}
+
+Pues mira, primero que nada tienes un firewall FortiGate 5001E que se dedica a bloquear accesos que no queremos. A parte de eso por cualquier otro caso todos los usuarios cuentan con firewalls en sus propias computadoras ya sea en sitio o propiedad de la empresa. Claro que a parte de todo un antivirus por cualquier cosa. Con eso y las políticas de no instalación ni permisos de administrador más o menos puedes asegurar que no van a pasar amenazas de equipo en equipo.
+
+\medskip
+
+Como pusimos la nube interna tuvimos que contratar otro servicio de fibra para tener redundancia. Nos sale caro pero por lo que esta pasando por el COVID fue una muy buena inversión que hicimos el año pasado. En sí la nube interna digamos que está muy aislada por ambos lados. Tienes un portal web que deja hacer login y tener acceso limitado a archivos sensibles por fuera, y teníamos implementado que usaras un VPN para poder subir archivos a ella. Tuvimos que darle computadoras de la empresa a algunos empleados que no tenían ya que el VPN solo lo configuramos en esas y nos ayuda a mantener la red de la empresa relativamente segura mientras no estamos en sitio.
+
+\medskip
+
+Volviendo a la configuración de bloqueo de la que te hablé hace rato nuestra red dentro de la empresa te maneja bloqueo a nivel DNS para los sitios bloqueados. A nivel máquina tienes algo a lo que le podrías llamar un rootkit, pero básicamente es un programa que corre en el anillo cero de la computadora y tiene permisos para todo, y se asegura que no puedas hacer varias cosas. También tenemos algunos programas que se dedican a bloquear protocolos como el P2P del que te hablaba antes instalados en cada computadora propiedad de la empresa.
+
+\medskip
+
+Por parte del monitoreo de la red tenemos tenemos un Zabbix con el que nos podemos meter a ver el tráfico dentro de la red de la empresa. Obviamente con esto del COVID pues resulta monótono porque dentro de la empresa como tal no hay tanto tráfico, y tenemos otro sistema separado para la nube.
+
+\medskip
+
+\subsubsection*{¿Como es el mantenimiento de la red?}
+
+Pues por ahora es más sencillo entre comillas. Las autoridades regionales ya no están dejando que te transportes si no es urgente por lo que solo he ido al sitio un par de veces a verificar el estado de los servidores, hay otros empleados que sí están más tiempo. Lo que si tengo mucho más ahora es monitoreo, como todo el negocio depende de la nube por ahora tenemos que estar muy pendientes de tener disponibilidad lo más cercana posible al \(100\%\) y cuidarnos bastante de los ataques. Hemos tenido intentos de ataques de denegación de servicio, pero pues contratamos un servicio para el front que lo puede librar, por lo que no hizo más que alentar un poco la entrada a la interfaz.
+
+\medskip
+
+En una situación más convencional el mantenimiento iría si mucho a la parte de monitorear y soportar la nube, pero las responsabilidades se irían también a la red como tal. Entonces pues ahí me toca monitorear todo lo que es tráfico, revisar cableados en las computadoras fijas y ayudar a los empleados cuando estos desean hacer alguna modificación a su equipo.
+
+\end{document}
