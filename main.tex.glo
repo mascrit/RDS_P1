@@ -90,8 +90,24 @@
     router, equipos de cómputo, etc.).}
 }
 
+\newglossaryentry{WPA}{
+  name=WPA,
+  description={WPA (acceso inalámbrico protegido) es 
+  una solución de seguridad inalámbrica (wifi) 
+  ofrecida por WiFi Alliance para solucionar las carencias de WEP.
+  WPA2 está basada en el nuevo estándar 802.11i}
+}
+
+
+
 \newacronym{mdf}{MDF}{Main Distribution Facility--Instalación principal de distribución}
 
 \newacronym{idf}{IDF}{Intermediate Distribution Frame--Marco de distribución intermedia}
 
 \newacronym{igg}{IGG}{Instituto de Geografía}
+
+\newacronym{unam}{UNAM}{Universidad Nacional Autonoma de México}
+
+\newacronym{lan}{LAN}{Local Area Network--Red de área local}
+
+\newacronym{vlsm}{VLSM}{Variable Length Subnet Mask--Máscaras de Subred de Tamaño Variable}

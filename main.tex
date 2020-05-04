@@ -1,3 +1,4 @@
+% !TeX root = ./main.tex
 \documentclass[letterpaper]{article}
 
 \usepackage[spanish,es-tabla]{babel}
@@ -17,9 +18,10 @@
 
 
 \pagestyle{fancy}
-\fancyhead[L]{\thepage}
+\fancyfoot[R]{\thepage}
 \fancyfoot[C]{\includegraphics[width=0.1\textwidth]{inge_logo}}
-
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
 
 
 \graphicspath{
@@ -59,13 +61,13 @@
 
 El \gls{cabesct}  ha  surgido  y  mejorado  con
 el  pasar  del  tiempo  como  una opción de establecer
-redes de área local LAN más estables, seguras y veloces
+redes de área local \acrshort{lan} más estables, seguras y veloces
 que han de solventar gran cantidad  de inconvenientes de
 conexión,  intrusiones y tráfico lento,entre otros problemas
 que deben enfrentar los diseñadores de red.
 
 En este proyecto se plantea el cableado de la segunda planta
-del Instituto de geografía, tratando de una excelente cotización
+del \acrfull{igg}, tratando de una excelente cotización
 con excelente calidad-precio para el cableado, la instalación de
 los equipos con sus configuraciones correspondientes.
 tomando en cuenta el tiempo de vida
@@ -76,7 +78,7 @@ de la futura red.
 \subsection{Objetivo General}\label{sec:objgen}
 
 Elaborar la Planeación, optimización y rediseño de la red Cableada interna del
-Instituto de Geografía de la UNAM.\ El diseño de la red abarcará aspectos físicos
+\acrfull{igg} de la \acrshort{unam}.\ El diseño de la red abarcará aspectos físicos
 y lógicos (\gls{cabesct} y direccionamiento lógico), así como la
 aplicación de los conceptos estudiados en los tema 3 y 5 de la materia de Redes
 de Datos Seguras.
@@ -93,7 +95,7 @@ La red que se implementará abarca el edificio Principal del \acrfull{igg}.
 Es necesario tener las siguientes consideraciones:
 \begin{itemize}
 \item El enlace de acometida principal deberá ser con tecnología de fibra
-  óptica y se tomará desde el anillo de red UNAM, nota éste ya existe.
+  óptica y se tomará desde el anillo de red \acrshort{unam}, nota éste ya existe.
   
 \item  En el edificio Principal existen dos Terrazas en la que no se puede realizar
 el cableado, sin embargo se necesita conectividad.
@@ -101,7 +103,7 @@ el cableado, sin embargo se necesita conectividad.
 \item También existen áreas donde no se puede realizar cableado pero se
   necesita conectividad. (Revisar en los planos)
   
-\item  Los cuartos de telecomunicaciones el MDF y los IDF’s sólo pueden
+\item  Los cuartos de telecomunicaciones el \acrshort{mdf} y los \acrshort{idf}’s sólo pueden
 instalarse en áreas permitidas, éstos deben estar conectados a través de
 fibra óptica, entre cada uno de los  \acrshort{idf}'s y el \acrshort{mdf}.\@
 
@@ -111,7 +113,7 @@ número de nodos adecuado para cada área y las direcciones IP que se
 van a requerir.
 
 \item  En caso de que haya más de un área de trabajo por piso deberá aplicar
-direccionamiento lógico VLSM y poner las IPs correspondientes a cada
+direccionamiento lógico \acrshort{vlsm} y poner las IPs correspondientes a cada
 área.
 \end{itemize}
 
@@ -137,7 +139,7 @@ entra por el backbone y donde los  \acrshort{idf}'s se
 conectan en estrella con el \acrshort{mdf}.
 
 
-\includepdf{img/2p-mod.pdf}
+\includepdf{img/2p-mod.pdf}\label{page:plano}
 
 \newpage{}
 
