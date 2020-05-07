@@ -1,0 +1,13 @@
+[Unit]
+     Description=Multi Router Traffic Grapher
+     After=network.target
+[Service]
+     PIDFile=/run/mrtg/mrtg.pid
+     User=mrtg
+     Group=mrtg
+     ExecStart=/usr/lib/systemd/scripts/mrtg.sh
+     ExecReload=/usr/bin/kill -USR2 $MAINPID
+     KillSignal=SIGQUIT
+     KillMode=mixed 
+[Install]
+     WantedBy=multi-user.target
