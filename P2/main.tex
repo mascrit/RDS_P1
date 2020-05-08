@@ -16,6 +16,36 @@
 \usepackage{pdfpages}
 \usepackage{listings}
 
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    showstringspaces=false,
+    commentstyle=\color{red},
+    keywordstyle=\color{blue}basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
 
 \pagestyle{fancy}
 \fancyfoot[R]{\thepage}
@@ -38,7 +68,7 @@
   \includegraphics[width=0.3\textwidth]{unam_logo}\vfill{}
   {\scshape\Huge Facultad de Ingeniera\par}\vspace{0.5cm}
   {\scshape\Large Redes de Datos Seguras\par}\vfill
-  {\huge \textbf{Proyecto 2 - ORPHEUS}\\Monitoreo del tráfico a través del
+  {\huge \textbf{Proyecto 2 --- ORPHEUS}\\Monitoreo del tráfico a través del
 servicio de SNMP graficado con MRTG}\vfill
   
   {\Large
@@ -76,25 +106,25 @@ análisis de su comportamiento.
 \end{itemize}
 \subsection{Objetivos Especificos}\label{sec:objgen}
 \begin{itemize}
-\item Implementar un servicio MRTG que recopile los datos de una impresora o switch por medio de SNMP
-\item Mostrar los datos tratados por el MRTG en un servidor web seguro
+\item Implementar un servicio \acrshort{mrtg} que recopile los datos de una impresora o switch por medio de \acrshort{snmp}
+\item Mostrar los datos tratados por el \acrshort{mrtg} en un servidor web seguro
 \end{itemize}
 \section{Desarrollo}\label{sec:objgen}
-Lo primero a efectuar es la investigacion del funcionamiento de protocolo SNMP el cual tiene una historia
+Lo primero a efectuar es la investigacion del funcionamiento de protocolo \acrshort{snmp} el cual tiene una historia
 y sus casos de uso que lo hacen ideal para la monitorizacion de dispositivos de red.
 \subsection{SNMP} % (fold)
 Fue introducido en 1988 debido a la necesidad creciente de un estándar para
-administrar dispositivos sobre redes IP. Se trata de un protocolo de capa de aplicación
+administrar dispositivos sobre redes IP.\@ Se trata de un protocolo de capa de aplicación
 (capa 7, OSI) que facilita el intercambio de información de gestión entre dispositivos de
 red.\\\\
 Este protocolo es parte del conjunto de protocolos TCP/IP (Transmission
 Control Protocol/Internet Protocol) y, por su amplia utilización en redes empresariales,
 es considerado el estándar de facto en detrimento del protocolo CMIP (Common
 Management Information Protocol) basado en el modelo OSI, más utilizado en las
-grandes redes de las operadoras de telecomunicación. SNMP permite a los
+grandes redes de las operadoras de telecomunicación. \acrshort{snmp} permite a los
 administradores: gestionar el rendimiento, encontrar y solucionar problemas, y
 planificar el crecimiento futuro de la red.\\\\
-Si bien SNMP se diseñó, en un principio, con el propósito de hacer posible
+Si bien \acrshort{snmp} se diseñó, en un principio, con el propósito de hacer posible
 supervisar de forma sencilla y resolver problemas en routers y bridges; con su
 ampliación, este protocolo puede ser utilizado para supervisar y controlar: routers,
 switches, bridges y hubs de la mayoría de fabricantes, además de servidores y
@@ -120,16 +150,15 @@ retransmisión.
 resolución e implementación.
   \item Dispone de mecanismos de autenticación y privacidad como medidas de
   \item Emplea UDP en el puerto 161 para el envio y recepcion de solicitudes
-  \item Empleta UDP en el puerto 162 para la recepcion de los agentes "traps"
+  \item Empleta UDP en el puerto 162 para la recepcion de los agentes ``traps''
   \item Existen 3 versiones del protocolo
   \begin{itemize}
-    \item SNMPv1 - version inicial del protocolo estandarizado
-    \item SNMPv2-c - Solventa problemas de seguridad y sobrecargas en transferencias de datos.
-    \item SNMPv3 - Añade esquemas de autenticación y encriptación
+    \item SNMPv1 --- version inicial del protocolo estandarizado
+    \item SNMPv2-c --- Solventa problemas de seguridad y sobrecargas en transferencias de datos.
+    \item SNMPv3 --- Añade esquemas de autenticación y encriptación
   \end{itemize}
 \end{itemize}
-\subsection{SMI y MIB} % (fold)
-\label{sub:objgen}
+\subsection{SMI y MIB}\label{sub:objgen} % (fold)
 La SMI (Structure of Managemet Information) se encarga de definir un esquema
 de nombres únicos para cada uno de los objetos administrados y su comportamiento
 (denominado OID). El agente posee una lista de los objetos que son supervisados, como
@@ -139,7 +168,7 @@ datos que almacena información (los OIDs con su descripción) de los dispositiv
 administrados. Al igual que el Agente reside en cada uno de los dispositivos
 gestionados. Las MIBs contienen objetos que representan parámetros o variables de los
 equipos gestionados y se ordenan de forma jerárquica siguiendo un esquema de árbol.
-Estas colecciones de objetos relacionados, definidos como módulos de MIB. Estos
+Estas colecciones de objetos relacionados, definidos como módulos de MIB.\@ Estos
 módulos están escritos en un lenguaje especial, definido en el estándar de Internet STD
 58, y en los RFCs de Internet 2578, 2579 y 2580.\\\\
 Cada elemento del árbol MIB se identifica por un OID (Object Identifier)
@@ -147,25 +176,24 @@ numérico o de texto. La lista completa de los objetos y su definición
 correspondiente está definida en el RFC 1212.\\\\
 % subsectionSMI y MIB (end)
 % subsectionSNMP (end)
-\subsection{MRTG} % (fold)
-\label{sub:MRTG}
+\subsection{MRTG}\label{sub:MRTG}% (fold)
 Se trata de una herramienta para monitorizar diversos parámetros de red y
 generar páginas HTML que contienen imágenes (con formato PNG) que proporcionan
-una representación gráfica en vivo de los datos que obtiene del protocolo SNMP o de
+una representación gráfica en vivo de los datos que obtiene del protocolo \acrshort{snmp} o de
 scripts.\\\\
-Entre las características más importantes de MRTG tenemos las siguientes:
+Entre las características más importantes de \acrshort{mrtg} tenemos las siguientes:
 \begin{itemize}
   \item Está escrito en Perl.
-  \item  Utiliza una aplicación SNMP portátil escrito completamente en Perl, por lo
-que no hay necesidad de instalar ningún paquete externo SNMP.
+  \item  Utiliza una aplicación \acrshort{snmp} portátil escrito completamente en Perl, por lo
+que no hay necesidad de instalar ningún paquete externo \acrshort{snmp}.\@
   \item  Las interfaces de routers pueden ser fácilmente identificadas por su dirección
 IP, la descripción y la dirección Ethernet además de la interfaz de serie
 normal.
   \item Los gráficos son generados directamente en formato PNG
-  \item El aspecto de las páginas web producidas por MRTG así como la
+  \item El aspecto de las páginas web producidas por \acrshort{mrtg} así como la
 configuración de este son altamente configurables.
 \end{itemize}
-MRTG consiste en un script de Perl que utiliza el protocolo SNMP para
+\acrshort{mrtg} consiste en un script de Perl que utiliza el protocolo \acrshort{snmp} para
 controlar cualquier variable que se elija, y un rápido programa en C que registra el
 tráfico de datos y crea los gráficos para representarlos. Estos gráficos se incrustan
 entonces en páginas web.
@@ -184,7 +212,7 @@ Para esta configuracion se hizo uso de un equipo con las siguientes caracteristi
 \end{itemize}
 Los pasos seguidos son los siguientes:
 \begin{itemize}
-  \item Instalar MRTG\\\begin{lstlisting}
+  \item Instalar \acrshort{mrtg}\\\begin{lstlisting}
 pacman -S mrtg
 \end{lstlisting}
   \item Crear el usuario mrtg \\\begin{lstlisting}
@@ -238,7 +266,7 @@ pacman -S mrtg
     cd /srv/http/mrtg
     indexmaker ./mrtg.cfg > index.html
   \end{lstlisting}
-  \item Crear el servicio que demonizara el servicio MRTG que obtendra los datos
+  \item Crear el servicio que demonizara el servicio \acrshort{mrtg} que obtendra los datos
   \begin{lstlisting}
     cp configs/mrtg.service /usr/lib/systemd/system
     systemctl enable mrtg
@@ -246,8 +274,7 @@ pacman -S mrtg
   \end{lstlisting}
   \item Abrir el dominio en el navegador y observar los resultados
 \end{itemize}
-\subsection{Archivos de configuracion usados} % (fold)
-\label{sub:Archivos de configuracion usados}
+\subsection{Archivos de configuracion usados}\label{sub:Archivos de configuracion usados} %fold
 Archivo de la configuracion del subdominio de nginx
 \lstinputlisting{configs/mrtg.somch.org}
 Script que ejecuta el demonio
