@@ -3,7 +3,7 @@
 #### Configurar tarjeta de red
 * Añadir el DNS y asignar una ip estatica a la tarjeta de red en el administrador de dispositivos
 * En servidor DNS poner la IP del servidor SAMBA AD DC
-![Captura de administrador de dispositivos](images/config_red_win.png?raw=true "Administrador de red")
+![Captura de administrador de dispositivos](images/config_red_win.PNG?raw=true "Administrador de red")
 ## SAMBA AD DC
 #### Añadir cliente a dominio
 * Click derecho a equipo y propiedades/configuracion avanzada/Nombre de equipo/ boton cambiar...
