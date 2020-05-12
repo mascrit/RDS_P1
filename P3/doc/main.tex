@@ -1,0 +1,51 @@
+\documentclass[letterpaper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[right=2.2cm,left=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{subfiles}
+\usepackage{listings}
+
+
+
+\graphicspath{{../../P1/img/}}
+\pagestyle{fancy}
+\fancyfoot[R]{\thepage}
+\fancyfoot[C]{\includegraphics[width=0.1\textwidth]{inge_logo}}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+
+
+\begin{document}
+\begin{titlepage}
+  \centering{
+    \includegraphics[width=0.3\textwidth]{unam_logo}\vfill{}
+    {\scshape{\Huge Facultad de Ingenieria\par{}}}\vspace{0.5cm}
+    {\scshape{\Large Redes de Datos Seguras\par{}}}\vfill{}
+    {\huge \textbf{Proyecto 3}\\SHIANTY --- SAMBA}\vfill{}
+
+    {\Large
+        Alumnos
+        \begin{itemize}
+        \item Garrido Czacki Mario Horacio
+        \item Romero Andrade Cristian
+        \item Romero Andrade Vicente
+        \end{itemize}
+      \textbf{Equipo 3}
+
+    }\vfill{}
+    {\large Profesor: Ing.~Edgar Martinez Meza}\vfill{}
+    \includegraphics[width=0.1\textwidth]{inge_logo}
+  }
+\end{titlepage}
+\tableofcontents{}
+
+\section{Recursos}\label{sec:recursos}
+
+\subfile{contenido/material_utilizado.tex}
+
+
+\end{document}
