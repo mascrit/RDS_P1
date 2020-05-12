@@ -205,6 +205,237 @@ systemctl restart nfs-server
   
 \end{enumerate}
 
+\subsubsection{SAMBA AD DC}\label{sec:samba_addc}
+
+SAMBA es una implementación del protocolo smb, a partir de su
+version 4 añade capacidades para crear y gestionar un controlador
+de directorio activo (active directory) y kerberos, el cual es
+compatible con la autenticación de red por de windows. Active
+directory es una implementación del protocolo ldap y kerberos
+es un protocolo de autenticación.
+
+\begin{enumerate}
+\item Instalar el protocolo para la sincronización de la hora.
+  Es un requerimiento de kerberos para los miembros del dominio
+
+  \begin{lstlisting}
+apt install ntp
+\end{lstlisting}
+
+  \item Instalar los paquetes necesarios para el servidor de
+    Samba 4 con AD DC
+
+    \begin{lstlisting}
+apt install samba smbclient attr winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user
+\end{lstlisting}
+
+  Mostrara una ventana de configuración que pedirá algunos parámetros
+
+  \begin{enumerate}
+  \item El primero es el del REALM o reino:
+
+    \begin{lstlisting}
+Reino predeterminado de la versión 5 de Kerberos:
+SRV.NIS_________
+    <Aceptar>
+  \end{lstlisting}
+
+  
+   \item El siguiente es el nombre del host, el cual se usara el mismo
+     que el reino pero en minúsculas
+
+     \begin{lstlisting}
+Servidores de Kerberos para su reino:
+srv.nis______
+    <Aceptar>
+\end{lstlisting}
+
+    \item La ultima ventana pedirá el nombre del host administrativo.
+      Se pone el mismo que el del servidor
+
+      \begin{lstlisting}
+Servidor administrativo para su reino de Kerberos:
+srv.nis_______
+    <Aceptar>
+\end{lstlisting}
+
+
+  
+    \end{enumerate}
+
+  \item Creación del controlador de dominio.
+
+    Se detienen los servicios antes de configurar esta parte.
+
+    \begin{lstlisting}
+systemctl stop samba-ad-dc smbd nmbd winbind
+systemctl disable samba-ad-dc smbd nmbd winbind
+\end{lstlisting}
+
+    Se elimina o se respalda el archivo de configuración de
+    SAMBA por defecto
+    \begin{lstlisting}
+mv /etc/samba/smb.conf /etc/samba/smb.conf.org
+    \end{lstlisting}
+
+    Se inicia la creación del controlador de forma interactiva, dotándole de compatibilidad con extensiones NIS RFC2307.
+
+    \begin{lstlisting}
+samba-tool domain provision --use-rfc2307 --interactive
+\end{lstlisting}
+
+    En la parte de Realm introducir el usado en este manual.
+
+    \begin{lstlisting}
+Realm: srv.nis
+\end{lstlisting}
+
+    En domain dejar el que esta por defecto, solo pulsar enter
+
+    \begin{lstlisting}
+Domain [SRV]:
+\end{lstlisting}
+
+    En Server Role dejar el que esta por defecto [dc]
+
+    \begin{lstlisting}
+Server Role (dc, member, standalon) [dc]:
+    \end{lstlisting}
+
+    DNS backend, dejar el que esta por defecto que es SAMBA\_INTERNAL
+
+    \begin{lstlisting}
+DNS backend (SAMBA_INTERNAL, BIND9_FLATFILE, BIND9_DLZ, NONE) [SAMBA_INTERNAL]:
+\end{lstlisting}
+
+    DNS fowarder IP address. Dejar la IP del servidor que en este caso es 192.168.100.119
+
+    \begin{lstlisting}
+DNS forwarder IP address (write 'none' to disable forwarding) [127.0.0.1]: 192.168.100.119
+\end{lstlisting}
+
+    Administrator password: Esta es la contraseña de administrador, poner una que sea mayor a 8 caracteres con una mayúscula y un dígito
+
+    \begin{lstlisting}
+Administrator password:
+Retype password:
+\end{lstlisting}
+
+    Si todo sale bien mostrara los datos con controlador de dominio
+
+    \begin{lstlisting}
+Server Role:           active directory domain controller
+Hostname:              Node03
+NetBIOS Domain:        SRV
+DNS Domain:            srv.nis
+DOMAIN SID:            S-1-5-21-3772837808-1505251784-1375148484
+\end{lstlisting}
+
+    Iniciar la familia de los demonios del samba-ad-dc
+
+    \begin{lstlisting}
+systemctl unmask samba-ad-dc
+systemctl start samba-ad-dc
+systemctl enable samba-ad-dc
+\end{lstlisting}
+
+    
+  \item Probar la configuración
+
+    Verificar el nivel de dominio
+
+    \begin{lstlisting}
+samba-tool domain level show
+\end{lstlisting}
+
+    Si todo sale bien debe mostrar lo siguiente
+
+    \begin{lstlisting}
+Domain and forest function level for domain 'DC=srv,DC=nis'
+
+Forest function level: (Windows) 2008 R2
+Domain function level: (Windows) 2008 R2
+Lowest function level of a DC: (Windows) 2008 R2
+\end{lstlisting}
+
+    Verificar el servidor de archivos. \lstinline|netlogon|
+    y \lstinline|sysvol|
+
+    \begin{lstlisting}
+smbclient -L localhost -U%
+\end{lstlisting}
+
+    Debe mostrar lo siguiente:
+
+    \begin{lstlisting}
+       Sharename       Type      Comment
+        ---------       ----      -------
+        homes           Disk      Home Directories
+        netlogon        Disk
+        sysvol          Disk
+        IPC$            IPC       IPC Service (Samba 4.9.5-Debian)
+Reconnecting with SMB1 for workgroup listing.
+
+        Server               Comment
+        ---------            -------
+
+        Workgroup            Master
+        ---------            -------
+        WORKGROUP            NODE03
+        WORKSOMCH            VENGANZASS
+\end{lstlisting}
+
+    	En el caso anterior se mostró los directorios configurados y 
+    		los workgroups existentes de otras maquinas Windows en la red.
+    	
+    	Verificar la autenticación usando el usuario de administrador del dominio.
+    	
+    	\begin{lstlisting}
+smbclient //localhost/netlogon -UAdministrator -c 'ls'
+\end{lstlisting}
+
+    	Si todo sale bien debe mostrar lo siguiente:
+    	
+    	\begin{lstlisting}
+Enter SRV\Administrator's password:
+  .                                   D        0  Sun May 10 20:07:09 2020
+  ..                                  D        0  Sun May 10 20:07:12 2020
+
+                19478160 blocks of size 1024. 17106040 blocks available
+
+    	\end{lstlisting}
+    	
+    	\item Verificar los registros de DNS. Importante que si los muestre ya 
+    		que sin estos Windows no sera capaz de detectar el dominio
+    		
+    		SRV de ldap usando TCP
+    		
+    		\begin{lstlisting}
+host -t SRV _ldap._tcp.srv.nis
+\end{lstlisting}
+    	
+		SRV de kerberos usando UDP
+
+		    	
+		\begin{lstlisting}
+host -t SRV _kerberos._udp.srv.nis
+\end{lstlisting}
+
+		A del dominio
+		
+		\begin{lstlisting}
+host -t A Node03.srv.nis
+\end{lstlisting}
+		
+		\item Si todo salio bien entonces el servidor ya esta correctamente configurado
+		
+		A veces hay que abrir los puertos en el firewall en caso de tener problemas
+
+
+    	
+    	
+    
+\end{enumerate}
 
 
 \end{document}
