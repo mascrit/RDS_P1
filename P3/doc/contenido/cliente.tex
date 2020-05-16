@@ -35,7 +35,7 @@
 \item Se debe modificar el archivo \lstinline|/etc/hosts| añadiendo
   el dominio del servidor.
 
-  \begin{lstlisting}
+  \begin{lstlisting}[language=bash,label={list:hosts},caption=Modificación del archivo /etc/hosts]
 192.168.100.119 Node03.srv.nis srv.nis Node03 srv
 \end{lstlisting}
 \end{enumerate}
@@ -54,11 +54,11 @@ dnf -y install ypbind rpcbind oddjob-mkhomedir
 ypdomainname srv.world
 \end{lstlisting}
   Añadir el dominio a \lstinline|/etc/sysconfig/network|
-  \begin{lstlisting}
+  \begin{lstlisting}[language=bash,label={list:sysnetwork},caption=Modificación del archivo /etc/sysconfig/network]
 echo "NISDOMAIN=srv.world" >> /etc/sysconfig/network 
 \end{lstlisting}
   Añadir el servidor al la configuracion de NIS \lstinline|/etc/yp.conf|
-  \begin{lstlisting}
+  \begin{lstlisting}[language=bash,label={list:yp},caption=Modificación del archivo /etc/yp.conf]
 # [domain (NIS domain) server (NIS server)]
 domain srv.nis server Node03.srv.nis 
 \end{lstlisting}
@@ -128,95 +128,6 @@ yppasswd
   
 \end{enumerate}
 
-\paragraph{NIS}
-\begin{enumerate}
-\item Instalar los paquetes necesarios.
-  \begin{lstlisting}
-dnf -y install ypbind rpcbind oddjob-mkhomedir
-\end{lstlisting}
-\item Configurar el dominio del NIS.\@
-
-  Usar \lstinline|ypdomainname|
-  \begin{lstlisting}
-ypdomainname srv.world
-\end{lstlisting}
-
-Añadir el dominio a \lstinline|/etc/sysconfig/network|
-
-\begin{lstlisting}
-echo "NISDOMAIN=srv.world" >> /etc/sysconfig/network 
-\end{lstlisting}
-
-Añadir el servidor al la configuracion de NIS /etc/yp.conf
-\begin{lstlisting}
-# [domain (NIS domain) server (NIS server)]
-domain srv.nis server Node03.srv.nis 
-\end{lstlisting}
-
-\item Configurar el metodo de autenticacion del cliente
-
-  Añadir NIS como metodo de autenticacion.
-
-  \begin{lstlisting}
-authselect select nis --force
-rofile "nis" was selected.
-The following nsswitch maps are overwritten by the profile:
-- aliases
-- automount
-- ethers
-- group
-- hosts
-- initgroups
-- netgroup
-- networks
-- passwd
-- protocols
-- publickey
-- rpc
-- services
-- shadow
-
-Make sure that NIS service is configured and enabled. See NIS documentation for more information.
-\end{lstlisting}
-
-\item Añadir la caracteristica para crear directorio de home
-  al primer inicio de sesion
-
-  \begin{lstlisting}
-authselect enable-feature with-mkhomedir 
-\end{lstlisting}
-
-\item Habilitar nis en SELinux (o desactivar SELinux si no es indispensable).
-
-  \begin{lstlisting}
-setsebool -P nis_enabled on 
-\end{lstlisting}
-
-\item Habilitar el servicio en systemd
-  \begin{lstlisting}
-systemctl enable --now rpcbind ypbind nis-domainname oddjobd 
-\end{lstlisting}
-
-\item Probar la correcta cofiguracion del cliente
-
-  Confirmar si el enlazador tiene comunicacion con el servidor NIS
-
-  \begin{lstlisting}
-ypwhich
-\end{lstlisting}
-
-Si todo sale bien debe aparecer el servidor en el dominio
-
-\begin{lstlisting}
-Node03.src.nis
-\end{lstlisting}
-
-Cambiar contraseña de NIS\footnote{Se proporcionara un script bash para automatizar este proceso}.
-
-\begin{lstlisting}
-yppasswd
-\end{lstlisting}
-\end{enumerate}
 
 \paragraph{NFS}
 \begin{enumerate}
@@ -227,7 +138,7 @@ dnf -y install nfs-utils
 \end{lstlisting}
 \item Configurar el dominio del servidor NFS en el
   archivo \lstinline|/etc/idmapd.conf|
-  \begin{lstlisting}
+  \begin{lstlisting}[label={list:idmap},caption=Modificación del archivo /etc/idmapd.conf]
 # linea 5 donde esta el dominio por defecto poner el del servidor
 Domain = srv.nis
 \end{lstlisting}
@@ -254,7 +165,7 @@ Node03.srv.nis:/home nfs4    19G   1.3G   17G   8% /home
 
   Modificar el archivo \lstinline|/etc/fstab|
 
-  \begin{lstlisting}
+  \begin{lstlisting}[label={list:fstab},caption=Modificación del archivo /etc/fstab]
 # Añadir al final del archivo
 Node03.srv.nis:/home/ /home               nfs     defaults        0 0
 \end{lstlisting}
@@ -341,7 +252,7 @@ systemctl enable --now autofs
 
   el contenido de este \lstinline|drive.bat| es el siguiente:
 
-  \lstinputlisting[language=sh]{../../configs/drive.bat}
+  \lstinputlisting[language=sh,label={list:drive},caption=Contenido de drive.bat]{../../configs/drive.bat}
 
 \item Para adaptar a caso de uso diferente
   modificar \lstinline|\SRV.NIS| por el nombre de dominio.
