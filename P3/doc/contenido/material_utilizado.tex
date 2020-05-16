@@ -52,7 +52,7 @@ ip estática:
 \item Se tiene que modificar el archivo \lstinline|/etc/network/interfaces|
   y añadir la siguiente configuración:
 
-  \begin{lstlisting}
+  \begin{lstlisting}[label={list:interfaces},caption=Archivo /etc/netctl/interfaces]
 auto ens33
 allow-hotplug ens33
 iface ens33 inet static
@@ -111,7 +111,7 @@ srv.nis______
 
   Se tiene que modificar el archivo \lstinline|/etc/default/nis|
 
-  \begin{lstlisting}
+  \begin{lstlisting}[label={list:nis},caption=Modificación del archivo /etc/default/nis]
 # Linea 6: Poner a NIS como servidor maestro
 NISSERVER=master
 \end{lstlisting}
@@ -176,7 +176,7 @@ apt -y install nfs-kernel-server
 \item Configurar el dominio del servidor en el
   archivo \lstinline|/etc/idmapd.conf|
 
-  \begin{lstlisting}
+  \begin{lstlisting}[label={list:idmapd},  caption=Modificación del archivo /etc/idmap.conf]
 # Linea 6: Aqui se descomenta y se agrega el dominio
 Domain = srv.nis
 \end{lstlisting}
@@ -184,7 +184,7 @@ Domain = srv.nis
 \item Añadir la ruta de los directorios home que se van a
   compartir por NFS, esto es en el archivo \lstinline|/etc/exports|
 
-  \begin{lstlisting}
+  \begin{lstlisting}[label={list:exports},caption=Adición en el archivo /etc/exports]
 /home 192.168.100.0/24(rw,no_root_squash,no_subtree_check) 
 \end{lstlisting}
 
@@ -208,7 +208,7 @@ systemctl restart nfs-server
 \subsubsection{SAMBA AD DC}\label{sec:samba_addc}
 
 SAMBA es una implementación del protocolo smb, a partir de su
-version 4 añade capacidades para crear y gestionar un controlador
+versión 4 añade capacidades para crear y gestionar un controlador
 de directorio activo (active directory) y kerberos, el cual es
 compatible con la autenticación de red por de windows. Active
 directory es una implementación del protocolo ldap y kerberos
@@ -276,7 +276,7 @@ systemctl disable samba-ad-dc smbd nmbd winbind
     SAMBA por defecto
     \begin{lstlisting}
 mv /etc/samba/smb.conf /etc/samba/smb.conf.org
-    \end{lstlisting}
+\end{lstlisting}
 
     Se inicia la creación del controlador de forma interactiva, dotándole de compatibilidad con extensiones NIS RFC2307.
 
