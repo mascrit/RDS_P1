@@ -51,7 +51,7 @@ ip estática:
   este nombre puede variar.
 \item Se tiene que modificar el archivo \lstinline|/etc/network/interfaces|
   y añadir la siguiente configuración:
-
+\lstset{style=nonestyle}
   \begin{lstlisting}[label={list:interfaces},caption=Archivo /etc/netctl/interfaces]
 auto ens33
 allow-hotplug ens33
@@ -88,11 +88,11 @@ search srv.nis
 \subsubsection{NIS}\label{sec:nis}
 
 NIS funciona para poder centralizar la autenticación de los clientes Linux.
-
+\lstset{style=mystyle}
 \begin{enumerate}
 \item Instalar NIS, en terminal con permisos administrativos:
 
-  \begin{lstlisting}[language=bash]
+  \begin{lstlisting}[language=bash,style=mystyle]
 apt -y install nis
   \end{lstlisting}
 
@@ -129,7 +129,7 @@ NISSERVER=master
 
   Reiniciamos el servicio nis para que se efectúen los cambios.
 
-  \begin{lstlisting}[language=bash]
+  \begin{lstlisting}[language=bash,style=mystyle]
 systemctl restart nis
 \end{lstlisting}
 
@@ -266,8 +266,8 @@ srv.nis_______
   \item Creación del controlador de dominio.
 
     Se detienen los servicios antes de configurar esta parte.
-
-    \begin{lstlisting}
+\lstset{style=mystyle}
+    \begin{lstlisting}[style=mystyle]
 systemctl stop samba-ad-dc smbd nmbd winbind
 systemctl disable samba-ad-dc smbd nmbd winbind
 \end{lstlisting}
@@ -349,7 +349,7 @@ samba-tool domain level show
 \end{lstlisting}
 
     Si todo sale bien debe mostrar lo siguiente
-
+\lstset{style=nonestyle}
     \begin{lstlisting}
 Domain and forest function level for domain 'DC=srv,DC=nis'
 
@@ -360,7 +360,7 @@ Lowest function level of a DC: (Windows) 2008 R2
 
     Verificar el servidor de archivos. \lstinline|netlogon|
     y \lstinline|sysvol|
-
+\lstset{style=mystyle}
     \begin{lstlisting}
 smbclient -L localhost -U%
 \end{lstlisting}

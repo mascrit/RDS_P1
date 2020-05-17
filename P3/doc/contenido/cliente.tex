@@ -179,7 +179,7 @@ Node03.srv.nis:/home/ /home               nfs     defaults        0 0
   \begin{lstlisting}
 dnf -y install autoFS
 \end{lstlisting}
-
+\lstset{style=nonestyle}
 Añadir la directiva de automontaje a la configuracion maestra de autoFS en el archivo \lstinline|/etc/auto.master|
 
 \begin{lstlisting}
@@ -196,7 +196,7 @@ Crear la configuracion de automontaje \lstinline|/etc/auto.mount|
 \end{lstlisting}
 
 Habilitar el servicio en systemd
-
+\lstset{style=mystyle}
 \begin{lstlisting}
 systemctl enable --now autofs 
 \end{lstlisting}
