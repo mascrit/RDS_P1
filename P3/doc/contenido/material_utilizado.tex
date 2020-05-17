@@ -366,7 +366,7 @@ smbclient -L localhost -U%
 \end{lstlisting}
 
     Debe mostrar lo siguiente:
-
+\lstset{style=nonestyle}
     \begin{lstlisting}
        Sharename       Type      Comment
         ---------       ----      -------
@@ -409,14 +409,14 @@ Enter SRV\Administrator's password:
     		que sin estos Windows no sera capaz de detectar el dominio
     		
     		SRV de ldap usando TCP
-    		
+\lstset{style=mystyle}    		
     		\begin{lstlisting}
 host -t SRV _ldap._tcp.srv.nis
 \end{lstlisting}
     	
 		SRV de kerberos usando UDP
 
-		    	
+
 		\begin{lstlisting}
 host -t SRV _kerberos._udp.srv.nis
 \end{lstlisting}

@@ -35,7 +35,7 @@
 \item Se debe modificar el archivo \lstinline|/etc/hosts| añadiendo
   el dominio del servidor.
 
-  \begin{lstlisting}[language=bash,label={list:hosts},caption=Modificación del archivo /etc/hosts]
+  \begin{lstlisting}[label={list:hosts},caption=Modificación del archivo /etc/hosts]
 192.168.100.119 Node03.srv.nis srv.nis Node03 srv
 \end{lstlisting}
 \end{enumerate}
@@ -66,10 +66,10 @@ domain srv.nis server Node03.srv.nis
 \item Configurar el metodo de autenticacion del cliente
  
   Añadir NIS como metodo de autenticacion
-
+\lstset{style=nonestyle}
   \begin{lstlisting}
 authselect select nis --force
-rofile "nis" was selected.
+profile "nis" was selected.
 The following nsswitch maps are overwritten by the profile:
 - aliases
 - automount
@@ -91,7 +91,7 @@ Make sure that NIS service is configured and enabled. See NIS documentation for 
 
 \item Añadir la caracteristica para crear directorio de home al
   primer inicio de sesion
-
+\lstset{style=mystyle}
   \begin{lstlisting}
 authselect enable-feature with-mkhomedir   
 \end{lstlisting}
@@ -209,7 +209,7 @@ systemctl enable --now autofs
 
 
 \subsubsection{Windows}\label{sec:cliente_win}
-
+\lstset{style=mystyle}
 \paragraph{Configurar tarjeta de red}\begin{itemize}
 \item Añadir el DNS y asignar una ip estatica a la tarjeta de red en el administrador de dispositivos
 \item En servidor DNS poner la IP del servidor SAMBA AD DC
